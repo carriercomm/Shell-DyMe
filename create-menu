@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+CREATEFOLDER=0;
+while [ $CREATEFOLDER -lt  1 ]; do 
+	key=$(whiptail --inputbox "$MSG\n\nFor what key would you like to create the menu?\n\n	Q = quit" 20 80 --nocancel 3>&1 1>&2 2>&3)
+	if echo "$key" | grep -qs '[0-9]'; then
+		if [ -d "$key" ]; then 
+			MSG="Folder already exists" 
+			continue
+		fi
+	else
+		if echo "$key" | grep -qs '[qQ]'; then
+			CREATEFOLDER=1;continue
+		fi
+		MSG="Not valid folder name!"
+		continue
+	fi
+	CREATEFOLDER=1;
+done
