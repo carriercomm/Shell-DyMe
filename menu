@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Clear the screen
+clear
+# Get this Menu name
+THISMENUNAME=$(ls |grep .name |awk -F. '{ print $1 }')
+
+# Get the description
+DESCRIPTION=$(less $THISMENUNAME.name)
+
+# Find all folders in this folder
+array=$(find . -maxdepth 1 -type d -name [^\.]\* | sed 's:^\./::' | sort)
+
+
+# Get the name and add after the key for the menu
+for id in ${array[@]}
+do
+	MENUS+=( "$id" ) # first add the Key, will return as value from the choice
+	name=$(cd $id; ls | grep .name | awk -F. '{ print $1 }') # Get the name of the folder
+	MENUS+=( "$name" ) # then add the Name for that folder
+done
+
+# Give the menu options
+whiptail --menu "\n		$DESCRIPTION" 20 80 10 ${MENUS[*]} --title "$THISMENUNAME menu"
