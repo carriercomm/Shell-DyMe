@@ -4,7 +4,7 @@
 ## This file is symlinked in every folder to make sure you can run a function from every folder
 if [ "$1" ]
  then
- cd /var/www/shell/
+ cd /var/www/testing/olmo/dyme
  ./$1
 else 
  tput setb 0;
