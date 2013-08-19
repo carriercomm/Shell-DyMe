@@ -1,0 +1,6 @@
+#! /bin/sh
+#
+
+
+# Give the menu options
+whiptail --menu "What would you like to do? \nCreate a menu in this folder? or make this folder a action?" 20 80 10 "Menu" "   New menu" "Action" "   New action" --title "New menu or action?"
